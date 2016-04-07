@@ -1,7 +1,10 @@
 <div ng-app="myApp" ng-controller="myCtrl">
 
-  <table>
-    <th>
+ Search <input ng-model="query">
+ <br>
+ <br>
+  <table style="border: 1px solid black; width: 1300px;">
+    <tr>
       <td>ID</td>
       <td>Date<td>
       <td>APN</td>
@@ -11,13 +14,20 @@
       <td>Interest Rate</td>
       <td>Loan Amount</td>
       <td>Loan Term</td>
-      
-    </th>
+      <td>Appraisal Value</td>     
+    </tr>
+    <tr ng-repeat="data in table_data | filter: query">
+      <td>{{data.id}}</td>
+      <td>{{data.date}}<td>
+      <td>{{data.apn}}</td>
+      <td>{{data.address}}</td>
+      <td>{{data.city}}</td>
+      <td>{{data.max_rate}}</td>
+      <td>{{data.interest_rate}}</td>
+      <td>{{data.loan_amount}}</td>
+      <td>{{data.loan_term}}</td>
+      <td>{{data.appraisal_value}}</td>  
+    </tr>
 
-    <tr ng-repeat="data in table_data">
-      <td>{{data}}</td>
- 
-      <tr>
-    </th>
   </table>
 </div>
