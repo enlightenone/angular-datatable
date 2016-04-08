@@ -1,3 +1,69 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/*Grid Display Pagination Styling*/
+.row-centered {
+  text-align: center;
+}
+
+.col-centered {
+  display: inline-block;
+}
+
+pagination .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
+  background-color: #FFC221;
+  border-color: #FFC221;
+  color: #000;
+
+}
+
+pagination .pagination > li > a, .pagination > li > span {
+  color: #000;
+}
+
+pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover{
+  color: #000;
+}
+
+#advanced_search_buttom, #advanced_filter_buttom {
+  cursor: pointer;
+}
+
+#advanced_search_block, #column_filter_block {
+  padding-top: 20px; 
+  border-top:2px solid #DFDFDF;
+}
+
+#reset_default {
+    display: inline-block;
+    background: #0088D4;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    padding: 10px;
+    line-height: 20px;
+    font-size: 32px;
+    cursor: pointer;
+}
+#reset_default_term {
+    font-size: 21px;
+    margin-right: 13px;
+    color: #0088D4;
+    line-height: 20px;
+    cursor: pointer;
+}
+
+.filter_cat_title {
+    color: #0088D4;
+    font-size: 20px;
+
+    text-align: center;
+    margin: 10px 0px;
+}
+
+#column_filter_buttom {
+   cursor: pointer;
+}

@@ -8,19 +8,30 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
    $scope.sortReverse = !$scope.sortReverse;
  } // End of $scope.selectSoftFunction function
 
- $scope.display_flags = [
+ $scope.ids_flags = [
     { "flag": true, "term": "ID", "key": "id" },
     { "flag": true, "term": "Date", "key": "date" },
-    { "flag": true, "term": "", "key": "" },
-    { "flag": true, "term": "APN",  "key": "apn" },
+    { "flag": true, "term": "APN",  "key": "apn" } //,
+ ];
+
+
+ $scope.address_flags = [
     { "flag": true, "term": "Address", "key": "address" },
-    { "flag": true, "term": "City", "key": "city" },
+    { "flag": true, "term": "City", "key": "city" }
+ ];
+
+
+ $scope.loan_flags = [
     { "flag": true, "term": "Max Rate", "key": "max_rate" },
     { "flag": true, "term": "Interest Rate", "key": "interest_rate" },
-    { "flag": true, "term": "Loan Amount", "key": "loan_amount" },
+    { "flag": true, "term": "Loan Amount", "key": "loan_amount" }
+ ];
+
+ $scope.other_flags = [
     { "flag": true, "term": "Loan Term", "key": "loan_term" },
     { "flag": true, "term": "Appraisal Value", "key": "appraisal_value" }
  ];
+
 
  $scope.table_data = [
    {
