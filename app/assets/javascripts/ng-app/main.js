@@ -110,10 +110,20 @@ $scope.MinLoanChanged =  function(){
   }
  }; // End of  $scope.MaxLoanChanged function
 
-
 // End of Filteration Block
 
+
+ $scope.reset = function(){
+ $scope.minLoan = 0 ;
+ $scope.maxLoan = 5000000000000000;
+ $scope.maxRate = 0 ;
+ $scope.sortReverse = false ;
+ $scope.query = "";
+ } // End of reset function
+
 }); // End of controller
+
+
 
 
 // ********************* Filters Section *****************
