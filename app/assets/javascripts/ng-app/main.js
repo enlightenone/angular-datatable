@@ -1,6 +1,6 @@
 var app = angular.module("myApp", [])
 
-app.controller("myCtrl", function($scope) {
+app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
     
   // Sorting function
  $scope.selectSortFunction = function(term) {
@@ -144,9 +144,118 @@ $scope.MinLoanChanged =  function(){
 
  } // End of reset function
 
-}); // End of controller
+
+// Filtered Property listing counts reference to be used for pagination.
+
+$scope.$watch(function (){
+  $scope.filteredProperties = $scope.$eval("table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate");
+
+  $scope.filteredItemsCount = $scope.filteredProperties.length;
+
+//   // Display Pagination bar if there are items on property listing.
+  $scope.paginationDisplayFlag =  $scope.filteredItemsCount ? true : false;
 
 
+  if ($scope.filteredItemsCount <= 20 ){
+      $scope.rangeSize = 1;
+  } else if ($scope.filteredItemsCount >= 21 && $scope.filteredItemsCount <= 40 ){
+      $scope.rangeSize = 2;
+  } else if ($scope.filteredItemsCount >= 41 && $scope.filteredItemsCount <= 60) {
+      $scope.rangeSize = 3;
+  } else if ($scope.filteredItemsCount >= 61 && $scope.filteredItemsCount <= 80) {
+      $scope.rangeSize = 4;
+  } else if ($scope.filteredItemsCount >= 81) {
+      $scope.rangeSize = 5;
+  }
+}); //End of $scope.$watch(function ()
+
+
+$scope.$watch('filteredItemsCount', function(newValue, oldValue){
+  $scope.currentPage = 0;
+
+});
+  /*********** Pagination Functions ******************/
+
+  // This is to determin number of listings per page based on number of columns on grid listing display.
+  // If there are 3 columns, following function will even out numbers of items per row on display by
+  // changing to 21 items per page.
+
+ /**** Resize watching block *****/
+// var w = angular.element($window);
+// $scope.$watch(
+//   function () {
+//     return $window.innerWidth;
+//   },
+//   function (value) {
+//     $scope.windowWidth = value;
+//       // When the widht of browser is within the range where columns of the display are 3, it 
+//       // will display 21 listings to even out row.
+//     if($scope.windowWidth > 991 && $scope.windowWidth < 1199 ){
+//       $scope.itemsPerPage = 21 ;  
+//     }else {
+//       $scope.itemsPerPage = 20 ;  
+//     }
+//   },
+//   true
+// );// end of $watch block 
+
+// w.bind('resize', function(){
+//   $scope.$apply();
+// });
+
+ /**** Resize watching block *****/
+
+    // Default values
+  $scope.currentPage = 0;
+
+   // Obtain range to display pages numbers on pagination page
+  $scope.range = function() {
+    var ret = [];
+    var start;
+
+    start = $scope.currentPage;
+    if ( start > $scope.pageCount()-$scope.rangeSize ) {
+      start = $scope.pageCount()-$scope.rangeSize+1;
+    }
+
+    for (var i=start; i<start+$scope.rangeSize; i++) {
+      ret.push(i);
+    }
+    return ret;
+  };
+
+   $scope.prevPage = function(){
+    if($scope.currentPage > 0){
+      $scope.currentPage--;
+    }
+   };
+
+   $scope.prevPageDisabled = function(){
+    return $scope.currentPage == 0 ? "disabled" : "" ;
+   };
+
+   $scope.pageCount = function (){
+    return Math.ceil($scope.filteredItemsCount/$scope.itemsPerPage)-1;
+   };
+
+   $scope.nextPage = function () {
+    // call query with $http.get('... &page='+$scope.currentPage);
+    if($scope.currentPage < $scope.pageCount()){
+      $scope.currentPage++;
+    }
+   };
+
+   $scope.nextPageDisabled = function() {
+    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+   };
+
+   $scope.setPage = function(n){
+    $scope.currentPage = n ; 
+   };
+
+  // ******** End of Pagination Functions **************
+
+}]); // End of controller
 
 
 // ********************* Filters Section *****************

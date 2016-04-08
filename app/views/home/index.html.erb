@@ -1,8 +1,31 @@
 <style>
- .my_selected {
+/*Grid Display Pagination Styling*/
+.row-centered {
+  text-align: center;
+}
 
- }
+.col-centered {
+  display: inline-block;
+}
+
+pagination .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
+  background-color: #FFC221;
+  border-color: #FFC221;
+  color: #000;
+
+}
+
+pagination .pagination > li > a, .pagination > li > span {
+  color: #000;
+}
+
+pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover{
+  color: #000;
+}
+/*End of Grid Display Pagination Styling*/
 </style>
+
+
 <div ng-app="myApp" ng-controller="myCtrl">
  Search <input ng-model="query">
  <br>
@@ -107,7 +130,7 @@
          {{flag.term}}
       </td>
     </tr>
-    <tr ng-repeat="data in table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate">
+    <tr ng-repeat="data in table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
       <td ng-show="display_flags[0].flag">{{data.id}}</td>
       <td ng-show="display_flags[1].flag">{{data.date}}<td>
       <td ng-show="display_flags[2].flag">{{data.apn}}</td>
@@ -124,21 +147,20 @@
 </div>
 
 <!-- Pagination Section -->
-<div>
-  <ul class="pagination">
-      <li ng-class="prevPageDisabled()">
-        <a href="" ng-click="prevPage()" >
-          <i class="fa fa-chevron-left"></i>
-        </a>
-     </li>
-    <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
-      <a href="">{{n+1}}</a>
-    </li>
-     <li ng-class="nextPageDisabled()">
-       <a href="" ng-click="nextPage()">
-          <i class="fa fa-chevron-right"></i>
-       </a>
-     </li>
-</ul>
-
-</div>
+<pagination>
+      <ul class="pagination">
+          <li ng-class="prevPageDisabled()">
+            <a href="" ng-click="prevPage()" >
+              <i class="fa fa-chevron-left"></i>
+            </a>
+         </li>
+        <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+          <a href="">{{n+1}}</a>
+        </li>
+         <li ng-class="nextPageDisabled()">
+           <a href="" ng-click="nextPage()">
+              <i class="fa fa-chevron-right"></i>
+           </a>
+         </li>
+    </ul>
+</pagination>
