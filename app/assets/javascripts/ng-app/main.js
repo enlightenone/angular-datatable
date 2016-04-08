@@ -8,6 +8,16 @@ app.controller("myCtrl", function($scope) {
    $scope.sortReverse = !$scope.sortReverse;
  } // End of $scope.selectSoftFunction function
 
+ $scope.display_flag = [
+  
+ ];
+
+ {
+
+
+ };
+
+
  $scope.table_data = [
    {
       "id": 1,
