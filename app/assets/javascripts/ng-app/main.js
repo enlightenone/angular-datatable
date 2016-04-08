@@ -84,7 +84,7 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
     },
 
    {
-      "id": 1,
+      "id": 6,
       "date": "2016-3-31",
       "apn": 812473246,
       "address": "1909 Charlemount Ave",
@@ -96,7 +96,7 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
       "appraisal_value": 125.00
     },
    {
-      "id": 2,
+      "id": 7,
       "date": "2016-2-31",
       "apn": 5173246,
       "address": "1909 Charlemount Ave",
@@ -108,7 +108,7 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
       "appraisal_value": 355.00
     },
    {
-      "id": 3,
+      "id": 8,
       "date": "2014-1-31",
       "apn": 4173246,
       "address": "1901 Charlemount Ave",
@@ -120,7 +120,7 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
       "appraisal_value": 115.00
     },
    {
-      "id": 4,
+      "id": 9,
       "date": "2016-6-31",
       "apn": 2173246,
       "address": "1909 Charlemount Ave",
@@ -132,7 +132,7 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
       "appraisal_value": 455.00
     },
    {
-      "id": 5,
+      "id": 10,
       "date": "2010-3-31",
       "apn": 7173246,
       "address": "1129 Seaman Ave",
@@ -151,6 +151,7 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
  $scope.maxRateTerm = "Max Rate";
  $scope.minLoanTerm = "Minimum Loan";
  $scope.maxLoanTerm = "Maximum Loan";
+ $scope.pageNumberTerm = "Page Number" ;
  $scope.minLoan = 0 ;
  $scope.maxLoan = 5000000000000000;
  $scope.maxRate = 0 ;
@@ -194,6 +195,7 @@ $scope.MinLoanChanged =  function(){
    $scope.maxRate = 0 ;
    $scope.sortReverse = false ;
    $scope.query = "";
+   $scope.itemPerPage = 5;
 
    for(i=0; i< flag_length; i++){
       $scope.display_flags[i].flag = true;
@@ -203,9 +205,41 @@ $scope.MinLoanChanged =  function(){
      return this.defaultSelected;
    });
 
+
+
  } // End of reset function
 
+ $scope.pageNumberChanged = function() {
+    console.log("ItemPerage");
+    // console.log($scope.itemsPerPage);
+    // switch($scope.itemsPerPage) {
+    //   case "1":
+    //     console.log("1");
+    //     $scope.rangeSize = 4;
+    //     break;
+    //   case "2":
+    //     console.log("2");
+    //     $scope.rangeSize = 4;
+    //     break;
+    //   case "3":
+    //    console.log("3");
+    //     $scope.rangeSize = 3;
+    //     break;
+    //   case "4":
+    //    console.log("4");
+    //     $scope.rangeSize = 3;
+    //     break;
+    //   case "5":
+    //     console.log("5");
+    //     $scope.rangeSize = 2;
+    //     break;
+    //   default:
+    //     console.log("default");
+    //     $scope.rangeSize = 4;
+    // } // End of switch block
 
+ } // End of $scope.pageNumberChanged function
+ 
 // Filtered Property listing counts reference to be used for pagination.
 
 $scope.$watch(function (){
@@ -217,18 +251,16 @@ $scope.$watch(function (){
   $scope.paginationDisplayFlag =  $scope.filteredItemsCount ? true : false;
 
  
+    if ($scope.filteredItemsCount <= 2 ){
+        $scope.rangeSize = 4;
+    } else if ($scope.filteredItemsCount >= 3 && $scope.filteredItemsCount <=  5){
+        $scope.rangeSize = 3;
+    } else if ($scope.filteredItemsCount >= 6 && $scope.filteredItemsCount <=  9) {
+        $scope.rangeSize = 2;
+    } else if ($scope.filteredItemsCount >= 10) {
+        $scope.rangeSize = 1;
+    }
 
-  if ($scope.filteredItemsCount <= 20 ){
-      $scope.rangeSize = 1;
-  } else if ($scope.filteredItemsCount >= 21 && $scope.filteredItemsCount <= 40 ){
-      $scope.rangeSize = 2;
-  } else if ($scope.filteredItemsCount >= 41 && $scope.filteredItemsCount <= 60) {
-      $scope.rangeSize = 3;
-  } else if ($scope.filteredItemsCount >= 61 && $scope.filteredItemsCount <= 80) {
-      $scope.rangeSize = 4;
-  } else if ($scope.filteredItemsCount >= 81) {
-      $scope.rangeSize = 5;
-  }
  }); //End of $scope.$watch(function ()
 
 
@@ -236,58 +268,26 @@ $scope.$watch('filteredItemsCount', function(newValue, oldValue){
   $scope.currentPage = 0;
 
 });
+
   /*********** Pagination Functions ******************/
-
-  // This is to determin number of listings per page based on number of columns on grid listing display.
-  // If there are 3 columns, following function will even out numbers of items per row on display by
-  // changing to 21 items per page.
-
-//  /**** Resize watching block *****/
-// var w = angular.element($window);
-// $scope.$watch(
-//   function () {
-//     return $window.innerWidth;
-//   },
-//   function (value) {
-//     $scope.windowWidth = value;
-//       // When the widht of browser is within the range where columns of the display are 3, it 
-//       // will display 21 listings to even out row.
-//     if($scope.windowWidth > 991 && $scope.windowWidth < 1199 ){
-//       // $scope.itemsPerPage = 21 ;  
-//       $scope.itemsPerPage = 5 ; 
-//     }else {
-//       $scope.itemsPerPage = 5 ;  
-//       // $scope.itemsPerPage = 21 ; 
-//     }
-//   },
-//   true
-// );// end of $watch block 
-
-// w.bind('resize', function(){
-//   $scope.$apply();
-// });
-
- /**** Resize watching block *****/
 
     // Default values
   $scope.currentPage = 0;
 
    // Obtain range to display pages numbers on pagination page
   $scope.range = function() {
-    var ret = [];
-    var start;
+      var ret = [];
+      var start;
 
-    start = $scope.currentPage;
-    if ( start > $scope.pageCount()-$scope.rangeSize ) {
-      start = $scope.pageCount()-$scope.rangeSize+1;
-    }
+      start = $scope.currentPage;
+      if ( start > $scope.pageCount()-$scope.rangeSize ) {
+        start = $scope.pageCount()-$scope.rangeSize+1;
+      }
 
-    for (var i=start; i<start+$scope.rangeSize; i++) {
-      ret.push(i);
-    }
-
-    console.log(ret);
-    return ret;
+      for (var i=start; i<start+$scope.rangeSize; i++) {
+        ret.push(i);
+      }
+      return ret;
    }; //End of range function
 
    $scope.prevPage = function(){
@@ -329,7 +329,6 @@ $scope.$watch('filteredItemsCount', function(newValue, oldValue){
 app.filter('loanRange', function(){
   return function (items, min, max) {
     var filtered = [];
-    // var listLoan;
     min = parseInt(min);
     max = parseInt(max);
 

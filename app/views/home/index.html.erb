@@ -118,15 +118,18 @@ pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination >
 <div>
  Reset: <button type="button" ng-click="reset()" >Reset</button>
 </div>
+<div >
+  <ul>
+    <li style="list-style-type: none; float: left; margin:15px 5px;" ng-repeat="flag in display_flags" >{{flag.term}} <input type="checkbox" ng-model="flag.flag"></li>
+  </ul>
+</div>
 
-<ul>
-  <li style="list-style-type: none; float: left; margin:15px 5px;" ng-repeat="flag in display_flags" >{{flag.term}} <input type="checkbox" ng-model="flag.flag"></li>
-</ul>
-
+<hr>
 <div>
- <h3>Page Number:</h3>
-       <select class="my_selected" ng-model="pageNumberOption" ng-change="pageNumberChanged()" >
-        <option value="1" selected="selected">1</option>
+ <h3>Page Number:</h3> 
+       <select class="my_selected" ng-model="itemsPerPage"  ng-click="pageNumberChanged()">
+        <option selected="selected">{{pageNumberTerm}}</option>
+        <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
@@ -136,9 +139,9 @@ pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination >
 </div>
   <table style="border: 1px solid black; width: 1300px;">
     <tr>
-      <td  style="text-align: center;" ng-repeat="flag in display_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
+      <th  style="text-align: center;" ng-repeat="flag in display_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
          {{flag.term}}
-      </td>
+      </th>
     </tr>
     <tr ng-repeat="data in table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
       <td ng-show="display_flags[0].flag">{{data.id}}</td>
