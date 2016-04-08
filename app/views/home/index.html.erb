@@ -1,13 +1,16 @@
+<style>
+ .my_selected {
+
+ }
+</style>
 <div ng-app="myApp" ng-controller="myCtrl">
-
-
  Search <input ng-model="query">
  <br>
  <br>
 <div>
   Max Rate:
 
-  <select  ng-model="maxRateOption" ng-change="maxRateChanged()">
+  <select class="my_selected" ng-model="maxRateOption" ng-change="maxRateChanged()">
         <option selected>{{maxRateTerm}}</option>
         <option value="1">1+</option>
         <option value="2">2+</option>
@@ -20,70 +23,70 @@
   <h2>Loan Amount:<h2>
   Minimum: <br>
   <div>
-                <select  ng-model="minLoanOption" ng-change="MinLoanChanged()">
-                  <option selected="selected">{{minLoanTerm}}</option>
-                  <option value="10000">$10,000+</option>
-                  <option value="20000">$20,000+</option>
-                  <option value="30000">$30,000+</option>
-                  <option value="50000">$50,000+</option>
-                  <option value="75000">$75,000+</option>
-                  <option value="100000">$100,000+</option>
-                  <option value="125000">$125,000+</opton>
-                  <option value="150000">$150,000+</opton>
-                  <option value="175000">$175,000+</opton>
-                  <option value="200000">$200,000+</opton>
-                  <option value="225000">$225,000+</opton>
-                  <option value="250000">$250,000+</opton>
-                  <option value="300000">$300,000+</opton>
-                  <option value="350000">$350,000+</option>
-                  <option value="400000">$400,000+</option>
-                  <option value="450000">$450,000+</option>
-                  <option value="500000">$500,000+</option>
-                  <option value="600000">$600,000+</option>
-                  <option value="700000">$700,000+</option>
-                  <option value="800000">$800,000+</option>
-                  <option value="1000000">$1M+</option>
-                  <option value="1250000">$1.25M+</option>
-                  <option value="1500000">$1.5M+</option>
-                  <option value="1750000">$1.75M+</option>
-                  <option value="2000000">$2M+</option>
-                  <option value="2500000">$2.5M+</option>
-                  <option value="3000000">$3M+</option>
-                </select>
+      <select class="my_selected" ng-model="minLoanOption" ng-change="MinLoanChanged()">
+        <option selected="selected">{{minLoanTerm}}</option>
+        <option value="10000">$10,000+</option>
+        <option value="20000">$20,000+</option>
+        <option value="30000">$30,000+</option>
+        <option value="50000">$50,000+</option>
+        <option value="75000">$75,000+</option>
+        <option value="100000">$100,000+</option>
+        <option value="125000">$125,000+</opton>
+        <option value="150000">$150,000+</opton>
+        <option value="175000">$175,000+</opton>
+        <option value="200000">$200,000+</opton>
+        <option value="225000">$225,000+</opton>
+        <option value="250000">$250,000+</opton>
+        <option value="300000">$300,000+</opton>
+        <option value="350000">$350,000+</option>
+        <option value="400000">$400,000+</option>
+        <option value="450000">$450,000+</option>
+        <option value="500000">$500,000+</option>
+        <option value="600000">$600,000+</option>
+        <option value="700000">$700,000+</option>
+        <option value="800000">$800,000+</option>
+        <option value="1000000">$1M+</option>
+        <option value="1250000">$1.25M+</option>
+        <option value="1500000">$1.5M+</option>
+        <option value="1750000">$1.75M+</option>
+        <option value="2000000">$2M+</option>
+        <option value="2500000">$2.5M+</option>
+        <option value="3000000">$3M+</option>
+      </select>
 
   </div>
   Maximum:
   <div>
-                <select ng-model="maxLoanOption" ng-change="MaxLoanChanged()" >
-                  <option selected="selected">{{maxLoanTerm}}</option>
-                  <option value="10000">$10,000+</option>
-                  <option value="20000">$20,000+</option>
-                  <option value="30000">$30,000+</option>
-                  <option value="50000">$50,000+</option>
-                  <option value="75000">$75,000+</option>
-                  <option value="100000">$100,000+</option>
-                  <option value="125000">$125,000+</opton>
-                  <option value="150000">$150,000+</opton>
-                  <option value="175000">$175,000+</opton>
-                  <option value="200000">$200,000+</opton>
-                  <option value="225000">$225,000+</opton>
-                  <option value="250000">$250,000+</opton>
-                  <option value="300000">$300,000+</opton>
-                  <option value="350000">$350,000+</option>
-                  <option value="400000">$400,000+</option>
-                  <option value="450000">$450,000+</option>
-                  <option value="500000">$500,000+</option>
-                  <option value="600000">$600,000+</option>
-                  <option value="700000">$700,000+</option>
-                  <option value="800000">$800,000+</option>
-                  <option value="1000000">$1M+</option>
-                  <option value="1250000">$1.25M+</option>
-                  <option value="1500000">$1.5M+</option>
-                  <option value="1750000">$1.75M+</option>
-                  <option value="2000000">$2M+</option>
-                  <option value="2500000">$2.5M+</option>
-                  <option value="3000000">$3M+</option>
-                </select>
+      <select class="my_selected" ng-model="maxLoanOption" ng-change="MaxLoanChanged()" >
+        <option selected="selected">{{maxLoanTerm}}</option>
+        <option value="10000">$10,000+</option>
+        <option value="20000">$20,000+</option>
+        <option value="30000">$30,000+</option>
+        <option value="50000">$50,000+</option>
+        <option value="75000">$75,000+</option>
+        <option value="100000">$100,000+</option>
+        <option value="125000">$125,000+</opton>
+        <option value="150000">$150,000+</opton>
+        <option value="175000">$175,000+</opton>
+        <option value="200000">$200,000+</opton>
+        <option value="225000">$225,000+</opton>
+        <option value="250000">$250,000+</opton>
+        <option value="300000">$300,000+</opton>
+        <option value="350000">$350,000+</option>
+        <option value="400000">$400,000+</option>
+        <option value="450000">$450,000+</option>
+        <option value="500000">$500,000+</option>
+        <option value="600000">$600,000+</option>
+        <option value="700000">$700,000+</option>
+        <option value="800000">$800,000+</option>
+        <option value="1000000">$1M+</option>
+        <option value="1250000">$1.25M+</option>
+        <option value="1500000">$1.5M+</option>
+        <option value="1750000">$1.75M+</option>
+        <option value="2000000">$2M+</option>
+        <option value="2500000">$2.5M+</option>
+        <option value="3000000">$3M+</option>
+      </select>
   </div>
 </div>
 <div>
@@ -93,25 +96,28 @@
  Reset: <button type="button" ng-click="reset()" >Reset</button>
 </div>
 
+<ul>
+  <li style="list-style-type: none; float: left; margin:15px 5px;" ng-repeat="flag in display_flags" >{{flag.term}} <input type="checkbox" ng-model="flag.flag"></li>
+</ul>
 
 
   <table style="border: 1px solid black; width: 1300px;">
     <tr>
-      <td ng-repeat="flag in display_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
+      <td  style="text-align: center;" ng-repeat="flag in display_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
          {{flag.term}}
       </td>
     </tr>
     <tr ng-repeat="data in table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate">
-      <td>{{data.id}}</td>
-      <td>{{data.date}}<td>
-      <td>{{data.apn}}</td>
-      <td>{{data.address}}</td>
-      <td>{{data.city}}</td>
-      <td>{{data.max_rate}}</td>
-      <td>{{data.interest_rate}}</td>
-      <td>{{data.loan_amount}}</td>
-      <td>{{data.loan_term}}</td>
-      <td>{{data.appraisal_value}}</td>  
+      <td ng-show="display_flags[0].flag">{{data.id}}</td>
+      <td ng-show="display_flags[1].flag">{{data.date}}<td>
+      <td ng-show="display_flags[2].flag">{{data.apn}}</td>
+      <td ng-show="display_flags[3].flag">{{data.address}}</td>
+      <td ng-show="display_flags[4].flag">{{data.city}}</td>
+      <td ng-show="display_flags[5].flag">{{data.max_rate}}</td>
+      <td ng-show="display_flags[6].flag">{{data.interest_rate}}</td>
+      <td ng-show="display_flags[7].flag">{{data.loan_amount}}</td>
+      <td ng-show="display_flags[8].flag">{{data.loan_term}}</td>
+      <td ng-show="display_flags[9].flag">{{data.appraisal_value}}</td>  
     </tr>
 
   </table>

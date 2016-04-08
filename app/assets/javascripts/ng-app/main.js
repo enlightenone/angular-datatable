@@ -127,11 +127,21 @@ $scope.MinLoanChanged =  function(){
 
 
  $scope.reset = function(){
- $scope.minLoan = 0 ;
- $scope.maxLoan = 5000000000000000;
- $scope.maxRate = 0 ;
- $scope.sortReverse = false ;
- $scope.query = "";
+   var flag_length = $scope.display_flags.length;
+   $scope.minLoan = 0 ;
+   $scope.maxLoan = 5000000000000000;
+   $scope.maxRate = 0 ;
+   $scope.sortReverse = false ;
+   $scope.query = "";
+
+   for(i=0; i< flag_length; i++){
+      $scope.display_flags[i].flag = true;
+   }
+
+   $('.my_selected option').prop('selected', function(){
+     return this.defaultSelected;
+   });
+
  } // End of reset function
 
 }); // End of controller
