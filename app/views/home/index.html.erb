@@ -6,10 +6,18 @@
  <br>
 <div>
   Max Rate:
-</div>
 
+  <select  ng-model="maxRateOption" ng-change="maxRateChanged()">
+        <option selected>{{maxRateTerm}}</option>
+        <option value="1">1+</option>
+        <option value="2">2+</option>
+        <option value="3">3+</option>
+        <option value="4">4+</option>
+        <option value="5">5+</option>
+  </select>
+</div>
 <div>
-  Loan Amount: <br>
+  <h2>Loan Amount:<h2>
   Minimum: <br>
   <div>
                 <select  ng-model="minLoanOption" ng-change="MinLoanChanged()">
@@ -98,7 +106,7 @@
       <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('loan_term')">Loan Term</span></td>
       <td><span style="border-radius: 50px; width: 40px; height: " ng-click="selectSortFunction('appraisal_value')">Appraisal Value</span></td>     
     </tr>
-    <tr ng-repeat="data in table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan">
+    <tr ng-repeat="data in table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate">
       <td>{{data.id}}</td>
       <td>{{data.date}}<td>
       <td>{{data.apn}}</td>

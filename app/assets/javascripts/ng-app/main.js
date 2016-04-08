@@ -74,10 +74,23 @@ app.controller("myCtrl", function($scope) {
 
 
 // Filteration Block
+ $scope.maxRateTerm = "Max Rate";
  $scope.minLoanTerm = "Minimum Loan";
  $scope.maxLoanTerm = "Maximum Loan";
  $scope.minLoan = 0 ;
  $scope.maxLoan = 5000000000000000;
+ $scope.maxRate = 0 ;
+
+
+
+   $scope.maxRateChanged = function(){
+    if($scope.maxRateOption == $scope.maxRateTerm ){
+      $scope.maxRate = 0;
+    } else {
+      $scope.maxRate = $scope.maxRateOption ;     
+    }
+
+   }; // End of $scope.maxRateChanged function
 
 $scope.MinLoanChanged =  function(){
   if(  $scope.minLoanOption == $scope.minLoanTerm ){
@@ -86,9 +99,7 @@ $scope.MinLoanChanged =  function(){
   }else {
      $scope.minLoan = $scope.minLoanOption ;
   }
-
-  console.log($scope.minLoan);
-};
+}; //End of $scope.MinLoanChanged
 
  $scope.MaxLoanChanged = function(){
   if(  $scope.maxLoanOption == $scope.maxLoanTerm ){
@@ -97,10 +108,7 @@ $scope.MinLoanChanged =  function(){
   }else {
      $scope.maxLoan = $scope.maxLoanOption ;
   }
-
-  console.log($scope.maxLoan);
-
- };
+ }; // End of  $scope.MaxLoanChanged function
 
 
 // End of Filteration Block
@@ -127,5 +135,20 @@ app.filter('loanRange', function(){
   };// end of first return function
 });// end of priceRange custom filter 
 
+
+app.filter('maxRateFilter', function(){
+  return function (items, num) {
+    var filtered = [];
+    num = parseFloat(num);
+    for(var i = 0 ; i < items.length ; i++ ){
+        if(items[i].max_rate >= num ) {
+          filtered.push(items[i]);
+        }
+    } // end of for loop
+    return filtered ;
+
+  };// end of first return function
+
+});// end of NumBeds custom filter 
 
 // ********************* End Filters Section *****************
