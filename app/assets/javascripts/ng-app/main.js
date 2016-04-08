@@ -11,6 +11,7 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
  $scope.display_flags = [
     { "flag": true, "term": "ID", "key": "id" },
     { "flag": true, "term": "Date", "key": "date" },
+    { "flag": true, "term": "", "key": "" },
     { "flag": true, "term": "APN",  "key": "apn" },
     { "flag": true, "term": "Address", "key": "address" },
     { "flag": true, "term": "City", "key": "city" },
@@ -210,7 +211,7 @@ $scope.MinLoanChanged =  function(){
  } // End of reset function
 
  $scope.pageNumberChanged = function() {
-    console.log("ItemPerage");
+
     // console.log($scope.itemsPerPage);
     // switch($scope.itemsPerPage) {
     //   case "1":

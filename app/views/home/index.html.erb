@@ -25,12 +25,36 @@ pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination >
 /*End of Grid Display Pagination Styling*/
 </style>
 
+<div style="width: 100%; height: 60px; background: #DCE4EA; padding: 10px">
+  <div class="container">
+    <div class="row">
+      <h2 style="color: #0088D4; margin: 0;">List View</h2>
+    </div>
+  </div>
+</div>
 
-<div >
- Search <input ng-model="query">
- <br>
- <br>
-<div>
+<!--  Search Field Block -->
+<div class="container" >
+  <div class="row" style="margin: 25px 0px;">
+    <form class="form-horizontal">
+      <div class="form-group">
+        <label for="search" class="col-sm-1 col-sm-offset-3"><span style="font-size: 24px;">Search</span></label>
+        <div class="col-sm-5">
+          <input id="search" class="form-control" ng-model="query">
+        </div>        
+      </div>
+    </form>
+  </div>
+</div>
+<!-- End of Search Field Block -->
+
+<!--  Advanced Search Field Block -->
+<div class="container">
+  <div class="row" style="border: 2px solid black;">
+   <span style="color: #0088D4;"><i class="fa fa-chevron-down"></i>Additional Options</span>
+  </div>
+</div>
+<!--  End of Advanced Search Field Block -->
   Max Rate:
 
   <select class="my_selected" ng-model="maxRateOption" ng-change="maxRateChanged()">
@@ -135,9 +159,13 @@ pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination >
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-
 </div>
-  <table style="border: 1px solid black; width: 1300px;">
+
+<!--  Main Table Block -->
+<div class="container" style="border: 2px solid blue;">
+  <div class="row" style="border: 3px solid red">
+
+  <table  class="table table-striped table-bordered table-hover">
     <tr>
       <th  style="text-align: center;" ng-repeat="flag in display_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
          {{flag.term}}
@@ -155,25 +183,31 @@ pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination >
       <td ng-show="display_flags[8].flag">{{data.loan_term}}</td>
       <td ng-show="display_flags[9].flag">{{data.appraisal_value}}</td>  
     </tr>
-
   </table>
+  </div>
+<!--    Pagination Block -->
+  <div class="row" style="text-align: center;">
+      <pagination style="display: inline-block;">
+            <ul class="pagination">
+                <li ng-class="prevPageDisabled()">
+                  <a href="" ng-click="prevPage()" >
+                    <i class="fa fa-chevron-left"></i>
+                  </a>
+               </li>
+              <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+                <a href="">{{n+1}}</a>
+              </li>
+               <li ng-class="nextPageDisabled()">
+                 <a href="" ng-click="nextPage()">
+                    <i class="fa fa-chevron-right"></i>
+                 </a>
+               </li>
+          </ul>
+      </pagination>
+  </div>
+<!--    End Of Pagination Block -->
 </div>
+<!--  End of Table Block -->
+
 
 <!-- Pagination Section -->
-<pagination>
-      <ul class="pagination">
-          <li ng-class="prevPageDisabled()">
-            <a href="" ng-click="prevPage()" >
-              <i class="fa fa-chevron-left"></i>
-            </a>
-         </li>
-        <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
-          <a href="">{{n+1}}</a>
-        </li>
-         <li ng-class="nextPageDisabled()">
-           <a href="" ng-click="nextPage()">
-              <i class="fa fa-chevron-right"></i>
-           </a>
-         </li>
-    </ul>
-</pagination>
