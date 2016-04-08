@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require_tree .
 //= require ng-app/main
+//= require_tree ../templates
