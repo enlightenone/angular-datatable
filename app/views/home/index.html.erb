@@ -122,3 +122,23 @@
 
   </table>
 </div>
+
+<!-- Pagination Section -->
+<div>
+  <ul class="pagination">
+      <li ng-class="prevPageDisabled()">
+        <a href="" ng-click="prevPage()" >
+          <i class="fa fa-chevron-left"></i>
+        </a>
+     </li>
+    <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
+      <a href="">{{n+1}}</a>
+    </li>
+     <li ng-class="nextPageDisabled()">
+       <a href="" ng-click="nextPage()">
+          <i class="fa fa-chevron-right"></i>
+       </a>
+     </li>
+</ul>
+
+</div>

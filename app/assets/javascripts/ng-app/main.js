@@ -184,4 +184,13 @@ app.filter('maxRateFilter', function(){
 
 });// end of NumBeds custom filter 
 
+// Pagination offset filter to slice array to be display
+
+app.filter('offset', function () {
+  return function(input, start){
+    start = parseInt(start, 10);
+    return input.slice(start);
+  };// end of return function
+}); // end of offset filter
+
 // ********************* End Filters Section *****************
