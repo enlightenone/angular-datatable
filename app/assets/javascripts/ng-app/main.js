@@ -205,10 +205,7 @@ $scope.MinLoanChanged =  function(){
    $('.my_selected option').prop('selected', function(){
      return this.defaultSelected;
    });
-
-
-
- } // End of reset function
+} // End of reset function
 
  $scope.pageNumberChanged = function() {
 

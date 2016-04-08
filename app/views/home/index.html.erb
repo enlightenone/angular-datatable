@@ -22,19 +22,48 @@ pagination .pagination > li > a, .pagination > li > span {
 pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover{
   color: #000;
 }
+
+#advanced_search_buttom {
+  cursor: pointer;
+}
+
+#reset_default {
+    display: inline-block;
+    background: #0088D4;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    padding: 10px;
+    line-height: 20px;
+    font-size: 32px;
+    cursor: pointer;
+}
+#reset_default_term {
+    font-size: 21px;
+    margin-right: 13px;
+    color: #0088D4;
+    line-height: 20px;
+    cursor: pointer;
+}
 /*End of Grid Display Pagination Styling*/
 </style>
+
+<script>
+$(document).ready(function(){
+    $("#advanced_search_block").hide();
+    $("#advanced_search_buttom").click(function(){
+        $("#advanced_search_block").slideToggle( "slow" );
+    });
+});
+</script>
 
 <div style="width: 100%; height: 60px; background: #DCE4EA; padding: 10px">
   <div class="container">
     <div class="row">
       <h2 style="color: #0088D4; margin: 0;">List View</h2>
     </div>
-    <div class="row">
-
-    </div>
   </div>
-
 </div>
 
 <!--  Search Field Block -->
@@ -42,22 +71,29 @@ pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination >
   <div class="row" style="margin: 25px 0px;">
     <form class="form-horizontal">
       <div class="form-group">
-        <label for="search" class="col-sm-1 col-sm-offset-3"><span style="font-size: 24px;">Search</span></label>
+        <label for="search" class="col-sm-1 col-sm-offset-2"><span style="font-size: 24px;">Search</span></label>
         <div class="col-sm-5">
           <input id="search" class="form-control" ng-model="query">
-        </div>        
+        </div> 
+        <div class="col-sm-4" style="text-align: right">
+         <span ng-click="reset()">
+            <span id="reset_default_term">Reset To Default</span> <span id="reset_default">X</span>
+         </span>
+      </div> 
       </div>
     </form>
+
   </div>
 </div>
 <!-- End of Search Field Block -->
 
 <!--  Advanced Search Field Block -->
-<div class="container">
-  <div class="row" style="border: 2px solid black;">
-   <span style="color: #0088D4; font-size: 20px;"><span style="color:#DFDFDF; font-size: 15px; margin-right: 5px;"><i class="fa fa-chevron-down" ></i></span>Additional Options</span>
+<div  class="container">
+  <div class="row" >
+   <span id="advanced_search_buttom"  style="color: #0088D4; font-size: 20px;"><span style="color:#DFDFDF; font-size: 15px; margin-right: 5px;"><i class="fa fa-chevron-down" ></i></span >Additional Options</span>
   </div>
-  <div class="row" style="background: blue; padding-top: 20px;">
+
+  <div id="advanced_search_block" class="row" style="padding-top: 20px; border-top:2px solid #DFDFDF;">
       <div class="form-group col-sm-2">
         <select class="my_selected form-control" ng-model="maxRateOption" ng-change="maxRateChanged()">
           <option selected="selected">{{maxRateTerm}}</option>
@@ -134,20 +170,13 @@ pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination >
         </select>
       </div>
 
-
-  </div>
-</div>
+      <div class="form-group col-sm-2">
+        Date: 
+      </div>
+  </div> <!-- End of Row Div -->
+</div> <!-- End of Container Div  -->
 <!--  End of Advanced Search Field Block -->
 
-
-
-
-<div>
-  Date:
-</div>
-<div>
- Reset: <button type="button" ng-click="reset()" >Reset</button>
-</div>
 <div >
   <ul>
     <li style="list-style-type: none; float: left; margin:15px 5px;" ng-repeat="flag in display_flags" >{{flag.term}} <input type="checkbox" ng-model="flag.flag"></li>
