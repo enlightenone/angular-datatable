@@ -72,4 +72,60 @@ app.controller("myCtrl", function($scope) {
 
   ];
 
+
+// Filteration Block
+ $scope.minLoanTerm = "Minimum Loan";
+ $scope.maxLoanTerm = "Maximum Loan";
+ $scope.minLoan = 0 ;
+ $scope.maxLoan = 5000000000000000;
+
+$scope.MinLoanChanged =  function(){
+  if(  $scope.minLoanOption == $scope.minLoanTerm ){
+
+    $scope.minLoan = 0 ;
+  }else {
+     $scope.minLoan = $scope.minLoanOption ;
+  }
+
+  console.log($scope.minLoan);
+};
+
+ $scope.MaxLoanChanged = function(){
+  if(  $scope.maxLoanOption == $scope.maxLoanTerm ){
+
+    $scope.maxLoan = 5000000000000000 ;
+  }else {
+     $scope.maxLoan = $scope.maxLoanOption ;
+  }
+
+  console.log($scope.maxLoan);
+
+ };
+
+
+// End of Filteration Block
+
 }); // End of controller
+
+
+// ********************* Filters Section *****************
+
+app.filter('loanRange', function(){
+  return function (items, min, max) {
+    var filtered = [];
+    // var listLoan;
+    min = parseInt(min);
+    max = parseInt(max);
+
+    for(var i = 0 ; i < items.length ; i++ ){
+          itemLoan = items[i].loan_amount;
+        if(itemLoan >= min && itemLoan <= max ) {
+          filtered.push(items[i]);
+        }
+    } // end of for loop
+    return filtered ;
+  };// end of first return function
+});// end of priceRange custom filter 
+
+
+// ********************* End Filters Section *****************
