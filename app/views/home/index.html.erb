@@ -93,18 +93,13 @@
  Reset: <button type="button" ng-click="reset()" >Reset</button>
 </div>
 
+
+
   <table style="border: 1px solid black; width: 1300px;">
     <tr>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('id')">ID</span></td>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('date')">Date</span><td>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('apn')">APN</span></td>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('address')">Address</span></td>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('city')">City</span></td>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('max_rate')">Max Rate</span></td>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('interest_rate')">Interest Rate</span></td>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('loan_amount')">Loan Amount</span></td>
-      <td><span style="border-radius: 50px; width: 40px; height: 40px;" ng-click="selectSortFunction('loan_term')">Loan Term</span></td>
-      <td><span style="border-radius: 50px; width: 40px; height: " ng-click="selectSortFunction('appraisal_value')">Appraisal Value</span></td>     
+      <td ng-repeat="flag in display_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
+         {{flag.term}}
+      </td>
     </tr>
     <tr ng-repeat="data in table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate">
       <td>{{data.id}}</td>
