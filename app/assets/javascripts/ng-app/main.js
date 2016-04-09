@@ -1,4 +1,4 @@
-var app = angular.module("myApp", [])
+var app = angular.module("myApp", ['datatables'])
 
 app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
     
