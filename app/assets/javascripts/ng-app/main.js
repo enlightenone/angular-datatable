@@ -1,4 +1,4 @@
-var app = angular.module("myApp", [])
+var app = angular.module("myApp", ['ui.bootstrap'])
 
 app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
     
@@ -163,7 +163,7 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
  $scope.maxRateTerm = "Max Rate";
  $scope.minLoanTerm = "Minimum Loan";
  $scope.maxLoanTerm = "Maximum Loan";
- $scope.pageNumberTerm = "Page Number" ;
+ $scope.pageNumberTerm = "Numbers";
  $scope.minLoan = 0 ;
  $scope.maxLoan = 5000000000000000;
  $scope.maxRate = 0 ;
@@ -201,7 +201,11 @@ $scope.MinLoanChanged =  function(){
 
 
  $scope.reset = function(){
-   var flag_length = $scope.display_flags.length;
+   var ids_flag_length = $scope.ids_flags.length;
+   var address_flag_length = $scope.address_flags.length;
+   var loan_flag_length = $scope.loan_flags.length;
+   var other_flag_length = $scope.other_flags.length;
+
    $scope.minLoan = 0 ;
    $scope.maxLoan = 5000000000000000;
    $scope.maxRate = 0 ;
@@ -209,8 +213,21 @@ $scope.MinLoanChanged =  function(){
    $scope.query = "";
    $scope.itemPerPage = 5;
 
-   for(i=0; i< flag_length; i++){
-      $scope.display_flags[i].flag = true;
+   for(i=0; i< ids_flag_length; i++){
+      $scope.ids_flags[i].flag = true;
+   }
+
+   for(i=0; i< address_flag_length; i++){
+      $scope.address_flags[i].flag = true;
+   }
+
+   for(i=0; i< loan_flag_length; i++){
+      $scope.loan_flags[i].flag = true;
+   }
+ 
+
+   for(i=0; i< other_flag_length; i++){
+      $scope.other_flags[i].flag = true;
    }
 
    $('.my_selected option').prop('selected', function(){

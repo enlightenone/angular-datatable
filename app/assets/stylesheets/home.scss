@@ -13,9 +13,9 @@
 }
 
 pagination .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
-  background-color: #FFC221;
-  border-color: #FFC221;
-  color: #000;
+  background-color: #0088D4;
+  border-color: #0088D4;
+  color: #fff;
 
 }
 
@@ -66,4 +66,14 @@ pagination .pagination > li > a:focus, .pagination > li > a:hover, .pagination >
 
 #column_filter_buttom {
    cursor: pointer;
+}
+
+#page_counter_wrapper {
+  margin: 10px 0px;
+}
+
+#page_counter_wrapper span {
+     padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
 }

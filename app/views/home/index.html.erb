@@ -178,15 +178,19 @@ $(document).ready(function(){
 
 
 
-<div >
+<div>
   <ul>
     <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in display_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
   </ul>
 </div>
 
 <hr>
-<div>
- <h3>Page Number:</h3> 
+
+<!--  Main Table Block -->
+<div class="container">
+  <div id="page_counter_wrapper" class="row">
+     <span>Show </span> 
+
        <select class="my_selected" ng-model="itemsPerPage"  ng-click="pageNumberChanged()">
         <option selected="selected">{{pageNumberTerm}}</option>
         <option value="1">1</option>
@@ -195,11 +199,9 @@ $(document).ready(function(){
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-</div>
-
-<!--  Main Table Block -->
-<div class="container" style="border: 2px solid blue;">
-  <div class="row" style="border: 3px solid red">
+      <span> Entries </span> 
+  </div>
+  <div class="row">
 
   <table  class="table table-striped table-bordered table-hover">
     <tr>
