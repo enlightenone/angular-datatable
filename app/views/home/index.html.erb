@@ -184,7 +184,7 @@ $(document).ready(function(){
 
 <hr>
 <!--    Main Table -->
-  <table datatable="ng" class="row-border hover">
+  <table datatable="ng" dt-options="dtOptions" class="row-border hover">
     <thead>
         <tr >
             <th ng-repeat="title in table_titles">{{title}}</th>

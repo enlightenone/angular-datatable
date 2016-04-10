@@ -1,66 +1,18 @@
-var app = angular.module("myApp", ['datatables'])
+var app = angular.module("myApp", ['datatables', 'datatables.colreorder'])
 
-app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
+app.controller("myCtrl", ['$scope','$window','DTOptionsBuilder', function($scope, $window, DTOptionsBuilder) {
     
-  // Sorting function
- $scope.selectSortFunction = function(term) {
-   $scope.sortType = term;
-   $scope.sortReverse = !$scope.sortReverse;
- } // End of $scope.selectSoftFunction function
+      $scope.dtOptions = DTOptionsBuilder.newOptions()
+        // Activate col reorder plugin
+        .withColReorder();
+        // Set order
+
+
+
+
 
  $scope.table_titles = ["ID", "Date", "APN", "Address", "City", 
                          "Max Rate", "Interest Rate", "Loan Amount", "Loan Term", "Appraisal Value"]
-
-$scope.titles = ["Full Name", "Email"]
-
-        $scope.users = [
-          {
-            'fullname': 'Alauddin',
-            'email':'testing@domain.com'
-          },
-          {
-            'fullname': 'TheWonder',
-            'email':'wonder@domain.com'
-          },{
-            'fullname': 'Alauddin',
-            'email':'testing@domain.com'
-          },
-          {
-            'fullname': 'TheWonder',
-            'email':'wonder@domain.com'
-          },{
-            'fullname': 'Alauddin',
-            'email':'testing@domain.com'
-          },
-          {
-            'fullname': 'TheWonder',
-            'email':'wonder@domain.com'
-          },{
-            'fullname': 'Alauddin',
-            'email':'testing@domain.com'
-          },
-          {
-            'fullname': 'TheWonder',
-            'email':'wonder@domain.com'
-          },{
-            'fullname': 'Alauddin',
-            'email':'testing@domain.com'
-          },
-          {
-            'fullname': 'TheWonder',
-            'email':'wonder@domain.com'
-          },{
-            'fullname': 'Alauddin',
-            'email':'testing@domain.com'
-          },
-          {
-            'fullname': 'TheWonder',
-            'email':'wonder@domain.com'
-          }
-        ];
-
-
-
 
  $scope.table_data = [
    {
