@@ -8,29 +8,58 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
    $scope.sortReverse = !$scope.sortReverse;
  } // End of $scope.selectSoftFunction function
 
- $scope.ids_flags = [
-    { "flag": true, "term": "ID", "key": "id" },
-    { "flag": true, "term": "Date", "key": "date" },
-    { "flag": true, "term": "APN",  "key": "apn" } //,
- ];
+ $scope.table_titles = ["ID", "Date", "APN", "Address", "City", 
+                         "Max Rate", "Interest Rate", "Loan Amount", "Loan Term", "Appraisal Value"]
+
+$scope.titles = ["Full Name", "Email"]
+
+        $scope.users = [
+          {
+            'fullname': 'Alauddin',
+            'email':'testing@domain.com'
+          },
+          {
+            'fullname': 'TheWonder',
+            'email':'wonder@domain.com'
+          },{
+            'fullname': 'Alauddin',
+            'email':'testing@domain.com'
+          },
+          {
+            'fullname': 'TheWonder',
+            'email':'wonder@domain.com'
+          },{
+            'fullname': 'Alauddin',
+            'email':'testing@domain.com'
+          },
+          {
+            'fullname': 'TheWonder',
+            'email':'wonder@domain.com'
+          },{
+            'fullname': 'Alauddin',
+            'email':'testing@domain.com'
+          },
+          {
+            'fullname': 'TheWonder',
+            'email':'wonder@domain.com'
+          },{
+            'fullname': 'Alauddin',
+            'email':'testing@domain.com'
+          },
+          {
+            'fullname': 'TheWonder',
+            'email':'wonder@domain.com'
+          },{
+            'fullname': 'Alauddin',
+            'email':'testing@domain.com'
+          },
+          {
+            'fullname': 'TheWonder',
+            'email':'wonder@domain.com'
+          }
+        ];
 
 
- $scope.address_flags = [
-    { "flag": true, "term": "Address", "key": "address" },
-    { "flag": true, "term": "City", "key": "city" }
- ];
-
-
- $scope.loan_flags = [
-    { "flag": true, "term": "Max Rate", "key": "max_rate" },
-    { "flag": true, "term": "Interest Rate", "key": "interest_rate" },
-    { "flag": true, "term": "Loan Amount", "key": "loan_amount" }
- ];
-
- $scope.other_flags = [
-    { "flag": true, "term": "Loan Term", "key": "loan_term" },
-    { "flag": true, "term": "Appraisal Value", "key": "appraisal_value" }
- ];
 
 
  $scope.table_data = [
@@ -218,119 +247,8 @@ $scope.MinLoanChanged =  function(){
    });
 } // End of reset function
 
- $scope.pageNumberChanged = function() {
 
-    // console.log($scope.itemsPerPage);
-    // switch($scope.itemsPerPage) {
-    //   case "1":
-    //     console.log("1");
-    //     $scope.rangeSize = 4;
-    //     break;
-    //   case "2":
-    //     console.log("2");
-    //     $scope.rangeSize = 4;
-    //     break;
-    //   case "3":
-    //    console.log("3");
-    //     $scope.rangeSize = 3;
-    //     break;
-    //   case "4":
-    //    console.log("4");
-    //     $scope.rangeSize = 3;
-    //     break;
-    //   case "5":
-    //     console.log("5");
-    //     $scope.rangeSize = 2;
-    //     break;
-    //   default:
-    //     console.log("default");
-    //     $scope.rangeSize = 4;
-    // } // End of switch block
-
- } // End of $scope.pageNumberChanged function
- 
-// Filtered Property listing counts reference to be used for pagination.
-
-$scope.$watch(function (){
-  $scope.filteredProperties = $scope.$eval("table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate");
-
-  $scope.filteredItemsCount = $scope.filteredProperties.length;
-
-//   // Display Pagination bar if there are items on property listing.
-  $scope.paginationDisplayFlag =  $scope.filteredItemsCount ? true : false;
-
- 
-    if ($scope.filteredItemsCount <= 2 ){
-        $scope.rangeSize = 4;
-    } else if ($scope.filteredItemsCount >= 3 && $scope.filteredItemsCount <=  5){
-        $scope.rangeSize = 3;
-    } else if ($scope.filteredItemsCount >= 6 && $scope.filteredItemsCount <=  9) {
-        $scope.rangeSize = 2;
-    } else if ($scope.filteredItemsCount >= 10) {
-        $scope.rangeSize = 1;
-    }
-
- }); //End of $scope.$watch(function ()
-
-
-$scope.$watch('filteredItemsCount', function(newValue, oldValue){
-  $scope.currentPage = 0;
-
-});
-
-  /*********** Pagination Functions ******************/
-
-    // Default values
-  $scope.currentPage = 0;
-
-   // Obtain range to display pages numbers on pagination page
-  $scope.range = function() {
-      var ret = [];
-      var start;
-
-      start = $scope.currentPage;
-      if ( start > $scope.pageCount()-$scope.rangeSize ) {
-        start = $scope.pageCount()-$scope.rangeSize+1;
-      }
-
-      for (var i=start; i<start+$scope.rangeSize; i++) {
-        ret.push(i);
-      }
-      return ret;
-   }; //End of range function
-
-   $scope.prevPage = function(){
-    if($scope.currentPage > 0){
-      $scope.currentPage--;
-    }
-   };
-
-   $scope.prevPageDisabled = function(){
-    return $scope.currentPage == 0 ? "disabled" : "" ;
-   };
-
-   $scope.pageCount = function (){
-    return Math.ceil($scope.filteredItemsCount/$scope.itemsPerPage)-1;
-   };
-
-   $scope.nextPage = function () {
-    // call query with $http.get('... &page='+$scope.currentPage);
-    if($scope.currentPage < $scope.pageCount()){
-      $scope.currentPage++;
-    }
-   };
-
-   $scope.nextPageDisabled = function() {
-    return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
-   };
-
-   $scope.setPage = function(n){
-    $scope.currentPage = n ; 
-   };
-
-  // ******** End of Pagination Functions **************
-
-}]); // End of controller
+ }]); // End of controller
 
 
 // ********************* Filters Section *****************

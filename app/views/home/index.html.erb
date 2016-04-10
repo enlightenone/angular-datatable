@@ -176,8 +176,6 @@ $(document).ready(function(){
 
 <!--  End of  Table Column Filteration Block -->
 
-
-
 <div >
   <ul>
     <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in display_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
@@ -185,46 +183,27 @@ $(document).ready(function(){
 </div>
 
 <hr>
-<div>
- <h3>Page Number:</h3> 
-       <select class="my_selected" ng-model="itemsPerPage"  ng-click="pageNumberChanged()">
-        <option selected="selected">{{pageNumberTerm}}</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-</div>
-
-<div style="height: 40px; width:100%; border: 2px solid blue;">
-  <hr>
-</div>
-
-<table datatable="ng" class="row-border hover">
+<!--    Main Table -->
+  <table datatable="ng" class="row-border hover">
     <thead>
-    <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-    </tr>
+        <tr >
+            <th ng-repeat="title in table_titles">{{title}}</th>
+        </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>1</td>
-        <td>Foo</td>
-        <td>Bar</td>
-    </tr>
-    <tr>
-        <td>123</td>
-        <td>Someone</td>
-        <td>Youknow</td>
-    </tr>
-    <tr>
-        <td>987</td>
-        <td>Iamout</td>
-        <td>Ofinspiration</td>
-    </tr>
+        <tr ng-repeat="data in table_data">
+          <td>{{data.id}}</td>
+          <td>{{data.date}}</td>
+          <td>{{data.apn}}</td>
+          <td>{{data.address}}</td>
+          <td>{{data.city}}</td>
+          <td>{{data.max_rate}}</td>
+          <td>{{data.interest_rate}}</td>
+          <td>{{data.loan_amount}}</td>
+          <td>{{data.loan_term}}</td>
+          <td>{{data.appraisal_value}}</td>  
+       </tr>
     </tbody>
 </table>
-<!-- Pagination Section -->
+
+<!--  End of Main Table -->
