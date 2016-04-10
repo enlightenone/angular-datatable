@@ -12,6 +12,7 @@
 //
 
 
+//= require jquery_ujs
 //= require turbolinks
 //= require_tree .
 //= require ng-app/main

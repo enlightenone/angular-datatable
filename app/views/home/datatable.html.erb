@@ -185,101 +185,30 @@ $(document).ready(function(){
 </div>
 
 <hr>
-<div>
- <h3>Page Number:</h3> 
-       <select class="my_selected" ng-model="itemsPerPage"  ng-click="pageNumberChanged()">
-        <option selected="selected">{{pageNumberTerm}}</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-      </select>
-</div>
 
-<!--  Main Table Block -->
-<div class="container" style="border: 2px solid blue;">
-  <div class="row" style="border: 3px solid red">
+<!-- Main Table Block -->
 
-  <table  class="table table-striped table-bordered table-hover">
-    <tr>
-      <th  style="text-align: center;" ng-repeat="flag in ids_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
-         {{flag.term}}
-      </th>
-      <th  style="text-align: center;" ng-repeat="flag in address_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
-         {{flag.term}}
-      </th>
-      <th  style="text-align: center;" ng-repeat="flag in loan_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
-         {{flag.term}}
-      </th>
-      <th  style="text-align: center;" ng-repeat="flag in other_flags" ng-show="flag.flag" ng-click="selectSortFunction(flag.key)">
-         {{flag.term}}
-      </th>
-    <tr ng-repeat="data in table_data | filter: query | orderBy:sortType:sortReverse | loanRange:minLoan:maxLoan | maxRateFilter: maxRate | offset: currentPage*itemsPerPage | limitTo: itemsPerPage">
-      <td ng-show="ids_flags[0].flag">{{data.id}}</td>
-      <td ng-show="ids_flags[1].flag">{{data.date}}<td>
-      <td ng-show="ids_flags[2].flag">{{data.apn}}</td>
-      <td ng-show="address_flags[0].flag">{{data.address}}</td>
-      <td ng-show="address_flags[1].flag">{{data.city}}</td>
-      <td ng-show="loan_flags[0].flag">{{data.max_rate}}</td>
-      <td ng-show="loan_flags[1].flag">{{data.interest_rate}}</td>
-      <td ng-show="loan_flags[2].flag">{{data.loan_amount}}</td>
-      <td ng-show="other_flags[0].flag">{{data.loan_term}}</td>
-      <td ng-show="other_flags[1].flag">{{data.appraisal_value}}</td>  
-    </tr>
-  </table>
-  </div>
-<!--    Pagination Block -->
-  <div class="row" style="text-align: center;">
-      <pagination style="display: inline-block;">
-            <ul class="pagination">
-                <li ng-class="prevPageDisabled()">
-                  <a href="" ng-click="prevPage()" >
-                    <i class="fa fa-chevron-left"></i>
-                  </a>
-               </li>
-              <li ng-repeat="n in range()" ng-class="{active: n == currentPage}" ng-click="setPage(n)">
-                <a href="">{{n+1}}</a>
-              </li>
-               <li ng-class="nextPageDisabled()">
-                 <a href="" ng-click="nextPage()">
-                    <i class="fa fa-chevron-right"></i>
-                 </a>
-               </li>
-          </ul>
-      </pagination>
-  </div>
-<!--    End Of Pagination Block -->
-</div>
-<!--  End of Table Block -->
-<div style="height: 40px; width:100%; border: 2px solid blue;">
-  <hr>
-</div>
 
-<table datatable="" class="row-border hover">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>First name</th>
-        <th>Last name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>1</td>
-        <td>Foo</td>
-        <td>Bar</td>
-    </tr>
-    <tr>
-        <td>123</td>
-        <td>Someone</td>
-        <td>Youknow</td>
-    </tr>
-    <tr>
-        <td>987</td>
-        <td>Iamout</td>
-        <td>Ofinspiration</td>
-    </tr>
-    </tbody>
-</table>
-<!-- Pagination Section -->
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+              <th ng-repeat="title in table_titles">{{title}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="data in table_data">
+            <td>{{data.id}}</td>
+            <td>{{data.date}}</td>
+            <td>{{data.apn}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.city}}</td>
+            <td>{{data.max_rate}}</td>
+            <td>{{data.interest_rate}}</td>
+            <td>{{data.loan_amount}}</td>
+            <td>{{data.loan_term}}</td>
+            <td>{{data.appraisal_value}}</td>  
+         </tr>
+        </tbody>
+    </table>
+
+<!--  End of Main Table Block -->

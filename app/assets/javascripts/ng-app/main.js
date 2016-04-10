@@ -1,12 +1,6 @@
-var app = angular.module("myApp", ['datatables', 'datatables.colreorder'])
+var app = angular.module("myApp", [])
 
-app.controller("myCtrl", ['$scope','$window','DTOptionsBuilder', function($scope, $window, DTOptionsBuilder) {
-    
-      $scope.dtOptions = DTOptionsBuilder.newOptions()
-        // Activate col reorder plugin
-        .withColReorder();
-        // Set order
-
+app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
 
 
 

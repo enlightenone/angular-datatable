@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
-  get "datatable" => 'home#datatable'
+  root 'home#datatable'
+
 
 
 
