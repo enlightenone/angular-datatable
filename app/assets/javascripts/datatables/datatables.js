@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $('#example').DataTable({
-        colReorder: true
+        colReorder: true,
+        stateSave: true
     });
 } );
