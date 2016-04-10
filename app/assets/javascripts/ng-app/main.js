@@ -8,6 +8,30 @@ app.controller("myCtrl", ['$scope','$window', function($scope, $window) {
  $scope.table_titles = ["ID", "Date", "APN", "Address", "City", 
                          "Max Rate", "Interest Rate", "Loan Amount", "Loan Term", "Appraisal Value"]
 
+ // Columns filteration titles 
+$scope.col_general_info_titles = {
+          "start": 0,
+          "options": ["ID", "Date", "APN"]
+    }; 
+
+$scope.col_address_titles = {
+          "start": 3,
+          "options": [ "Address", "City"]
+    }; 
+
+$scope.col_loan_info_titles = {
+          "start": 5,
+          "options": ["Max Rate", "Interest Rate", "Loan Amount", "Loan Term"]
+}
+
+
+$scope.col_others_info_titles = {
+          "start": 9,
+          "options": ["Appraisal Value"]
+}
+
+ // End of Columns filteration titles 
+
  $scope.table_data = [
    {
       "id": 1,

@@ -1,17 +1,4 @@
-<script>
-$(document).ready(function(){
-    $("#advanced_search_block").hide();
-    $("#column_filter_block").hide();
 
-    $("#advanced_search_buttom").click(function(){
-        $("#advanced_search_block").slideToggle( "slow" );
-    });
-
-    $("#column_filter_buttom").click(function(){
-        $("#column_filter_block").slideToggle( "slow" );
-    });
-});
-</script>
 
 <div style="width: 100%; height: 60px; background: #DCE4EA; padding: 10px">
   <div class="container">
@@ -146,28 +133,28 @@ $(document).ready(function(){
         <div class="filter_cat_title"> General Info</div>
         <hr>
         <ul>
-          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in ids_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
+          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="option in col_general_info_titles.options" ><input type="checkbox" checked data-column-num="{{$index + col_general_info_titles.start }}"> {{option}} </li>
         </ul>
      </div>
      <div class="col-sm-3">
         <div class="filter_cat_title">Address</div>
         <hr>
         <ul>
-          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in address_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
+          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="option in col_address_titles.options" ><input type="checkbox" checked data-column-num="{{$index + col_address_titles.start }}"> {{option}} </li>
         </ul>
      </div>
       <div class="col-sm-3">
         <div class="filter_cat_title">Loan Info</div>
         <hr>
         <ul>
-          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in loan_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
+          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="option in col_loan_info_titles.options" ><input type="checkbox" checked data-column-num="{{$index + col_loan_info_titles.start }}"> {{option}} </li>
         </ul>
      </div>
      <div class="col-sm-3">
         <div class="filter_cat_title">Others Info</div>
         <hr>
         <ul>
-          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in other_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
+          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="option in col_others_info_titles.options" ><input type="checkbox" checked data-column-num="{{$index + col_others_info_titles.start }}"> {{option}} </li>
         </ul>
      </div>
   </div> <!-- End of row div -->
