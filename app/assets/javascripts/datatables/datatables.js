@@ -17,9 +17,8 @@ $(document).ready(function() {
           return data
         },
         "stateLoadParams": function(settings, data){
-
-          // console.log("hello");
-          console.log(data);
+          $("#min-date").val(data["min_date"]);
+          $("#max-date").val(data["max_date"]); 
         }
 
 
