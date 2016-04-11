@@ -22,6 +22,10 @@ $(document).ready(function() {
 
     });
 
+
+     // Date range filtration
+
+
     $("input.toggle-visit").each(function(){
       var $input = $(this);
       var col_number = $input.attr('data-column-num');
@@ -45,3 +49,23 @@ $(document).ready(function() {
         column.visible(!column.visible());
     });
 });
+
+
+// Custom filtration functions
+$.fn.dataTable.ext.search.push(    
+    function( settings, data, dataIndex ) {
+        
+        var min = parseInt( $('#min-loan-amount').val(), 10 );
+        var max = parseInt( $('#max-loan-amount').val(), 10 );
+        var age = parseFloat(data[0].substring(5, 7)) || 0;
+ 
+        if ( ( isNaN( min ) && isNaN( max ) ) ||
+             ( isNaN( min ) && age <= max ) ||
+             ( min <= age   && isNaN( max ) ) ||
+             ( min <= age   && age <= max ) )
+        {
+            return true;
+        }
+        return false;
+    }
+);
