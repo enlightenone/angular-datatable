@@ -4,17 +4,20 @@ $(document).ready(function() {
         stateSave: true,
         "scrollX": true,
         "stateSaveParams": function(settings,data){
-         
           var loan_amount = $("#loan-amount").val();
-          data["loan-amount"] = loan_amount != "Loan Amount" ? loan_amount : "Loan Amount";
-          data["min-date"] = $("#min-date").val(); 
-          data["max-date"] = $("#max-date").val();
+            data["min-loan-term"] = $("#min-loan-term").val();
+            data["max-loan-term"] = $("#max-loan-term").val();
+            data["loan-amount"] = loan_amount != "Loan Amount" ? loan_amount : "Loan Amount";
+            data["min-date"] = $("#min-date").val(); 
+            data["max-date"] = $("#max-date").val();
           return data
         },
         "stateLoadParams": function(settings, data){
-          $("#min-date").val(data["min-date"]);
-          $("#max-date").val(data["max-date"]); 
-          $("#loan-amount").val(data["loan-amount"]);
+            $("#min-loan-term").val(data["min-loan-term"]);
+            $("#max-loan-term").val(data["max-loan-term"]);
+            $("#min-date").val(data["min-date"]);
+            $("#max-date").val(data["max-date"]); 
+            $("#loan-amount").val(data["loan-amount"]);
         }
 
 
@@ -38,21 +41,15 @@ $(document).ready(function() {
     } );
     //Resetting function
 
-    // $("#reset_default_term").on('click', function(){
-  
-    //     table.state.clear();
-    //     table.colReorder.reset();
-      
-    //   $("input.toggle-visit").each(function(){
-    //     var col_num = $(this).attr('data-column-num');
-    //     var col = table.column(col_num);
-    //     $(this).prop("checked", true);
-    //     col.visible(true);
-    //   });
-
-
-    // });
-
+    $("#reset_default_term").on('click', function(){
+        console.log("hello");
+        // table.colReorder.reset();
+        // $("#min-loan-term").val("");
+        // $("#max-loan-term").val("");
+        // $("#min-date").val("");
+        // $("#max-date").val("max-date"); 
+        // $("#loan-amount").val("Loan Amount");
+    }); // End of default resetting function
 
      // Date range filtration
 
