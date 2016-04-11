@@ -51,7 +51,14 @@ $(document).ready(function() {
         $("#min-date").val("");
         $("#max-date").val(""); 
         $("#loan-amount").val("Loan Amount");
-        table.draw(); 
+
+        $("input.toggle-visit").each(function(){
+            var $input = $(this);
+            var col_number = $input.attr('data-column-num');
+            table.column(col_number).visible(true);
+            $input.prop("checked", true);
+        });
+        table.draw();
     }); // End of default resetting function
 
      // Date range filtration
