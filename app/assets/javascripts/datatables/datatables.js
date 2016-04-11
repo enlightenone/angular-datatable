@@ -3,6 +3,10 @@ $(document).ready(function() {
         colReorder: true,
         stateSave: true,
         "scrollX": true,
+        "dom": 'Zlfrtip',
+        // initComplete: function(settings) { 
+        //     $('#example').colResizable({liveDrag:true});
+        // },
         "stateSaveParams": function(settings,data){
             var loan_amount = $("#loan-amount").val();
               data["min-loan-term"] = $("#min-loan-term").val();
@@ -20,6 +24,7 @@ $(document).ready(function() {
             $("#loan-amount").val(data["loan-amount"]);
         }
     });
+
 
 
     $('#min-loan-term, #max-loan-term, #min-date, #max-date').keyup( function() {
@@ -44,12 +49,15 @@ $(document).ready(function() {
         table.colReorder.reset();
         table.search( "" );
         table.column( '0:visible' ).order( 'asc' );
+        table.page.len( 10 );
+        table.columns.adjust().draw();
         $("#min-loan-term").val("");
         $("#max-loan-term").val("");
         $("#min-date").val("");
         $("#max-date").val(""); 
         $("#loan-amount").val("Loan Amount");
         $("select[name=example_length]").val("10");
+
         $("input.toggle-visit").each(function(){
             var $input = $(this);
             var col_number = $input.attr('data-column-num');
