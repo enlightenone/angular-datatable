@@ -4,6 +4,8 @@ $(document).ready(function() {
         stateSave: true,
         "scrollX": true,
         "stateSaveParams": function(settings,data){
+
+
           var loan_amount = $("#loan-amount").val();
             data["min-loan-term"] = $("#min-loan-term").val();
             data["max-loan-term"] = $("#max-loan-term").val();
@@ -42,13 +44,14 @@ $(document).ready(function() {
     //Resetting function
 
     $("#reset_default_term").on('click', function(){
-        console.log("hello");
-        // table.colReorder.reset();
-        // $("#min-loan-term").val("");
-        // $("#max-loan-term").val("");
-        // $("#min-date").val("");
-        // $("#max-date").val("max-date"); 
-        // $("#loan-amount").val("Loan Amount");
+        table.colReorder.reset();
+        table.search( "" );
+        $("#min-loan-term").val("");
+        $("#max-loan-term").val("");
+        $("#min-date").val("");
+        $("#max-date").val(""); 
+        $("#loan-amount").val("Loan Amount");
+        table.draw(); 
     }); // End of default resetting function
 
      // Date range filtration
