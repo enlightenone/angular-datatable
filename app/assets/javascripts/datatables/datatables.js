@@ -4,21 +4,17 @@ $(document).ready(function() {
         stateSave: true,
         "scrollX": true,
         "stateSaveParams": function(settings,data){
-
-          var min_loan = $("#min-date").val();
-          var max_loan = $("#max-date").val();
-
-          // console.log(min_loan);
-          // console.log(max_loan);
-          data["min_date"] = min_loan;
-          data["max_date"] = max_loan;
-
-          // console.log(data);
+         
+          var loan_amount = $("#loan-amount").val();
+          data["loan-amount"] = loan_amount != "Loan Amount" ? loan_amount : "Loan Amount";
+          data["min-date"] = $("#min-date").val(); 
+          data["max-date"] = $("#max-date").val();
           return data
         },
         "stateLoadParams": function(settings, data){
-          $("#min-date").val(data["min_date"]);
-          $("#max-date").val(data["max_date"]); 
+          $("#min-date").val(data["min-date"]);
+          $("#max-date").val(data["max-date"]); 
+          $("#loan-amount").val(data["loan-amount"]);
         }
 
 
