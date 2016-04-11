@@ -5,6 +5,22 @@ $(document).ready(function() {
         "scrollX": true
     });
 
+    //Resetting function
+
+    $("#reset_default_term").on('click', function(){
+  
+        table.state.clear();
+        table.colReorder.reset();
+      
+      $("input.toggle-visit").each(function(){
+        var col_num = $(this).attr('data-column-num');
+        var col = table.column(col_num);
+        $(this).prop("checked", true);
+        col.visible(true);
+      });
+
+
+    });
 
     $("input.toggle-visit").each(function(){
       var $input = $(this);
