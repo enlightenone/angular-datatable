@@ -11,6 +11,11 @@ $(document).ready(function() {
     } );
 
 
+      $('#min-date, #max-date').change( function() {
+        table.draw();
+    } );
+
+
     $('#loan-amount').change( function() {
         table.draw();
     } );
@@ -34,10 +39,7 @@ $(document).ready(function() {
 
      // Date range filtration
 
-    // $( "#min-date, #max-date" ).datepicker({
-    //     appendText: "(yyyy-mm-dd)"
-        
-    // });
+    $( "#min-date, #max-date" ).datepicker({dateFormat: 'yy-mm-dd'});
 
 
     $("input.toggle-visit").each(function(){
@@ -103,18 +105,18 @@ $.fn.dataTable.ext.search.push(
 $.fn.dataTable.ext.search.push(
                 function( settings, data, dataIndex ) {
                     var array=[];
-                    var today = new Date();
-                    var dd = today.getDate();
-                    var mm = today.getMonth() + 1;
-                    var yyyy = today.getFullYear();
+                    // var today = new Date();
+                    // var dd = today.getDate();
+                    // var mm = today.getMonth();
+                    // var yyyy = today.getFullYear();
                      
-                    if (dd<10)
-                    dd = '0'+dd;
+                    // if (dd<10)
+                    // dd = '0'+dd;
                      
-                    if (mm<10)
-                    mm = '0'+mm;
+                    // if (mm<10)
+                    // mm = '0'+mm;
                      
-                                today = yyyy+'-'+mm+'-'+dd;
+                    //             today = yyyy+'-'+mm+'-'+dd;
                      
                     if ($('#min-date').val() == '' && $('#max-date').val() == '') {
                     return true;
@@ -129,19 +131,26 @@ $.fn.dataTable.ext.search.push(
                      var iMax_temp = $('#max-date').val();
                      if (iMax_temp == '') {
                       iMax_temp = '2030-05-01';
-                       array.push(iMax_temp.substr(0,10));
+                       // array.push(iMax_temp.substr(0,10));
                        
  
-                    }
+                     }
                      
                     var arr_min = iMin_temp.split("-");
                     var arr_max = iMax_temp.split("-");
                     var arr_date = data[1].split("-");
-           
+            
+                    arr_min[1] = parseInt(arr_min[1]) - 1 ;
+                    arr_max[1] = parseInt(arr_max[1]) - 1 ;
+                    arr_date[1] = parseInt(arr_date[1]) - 1 ;
 
-                    var iMin = new Date(arr_min[2], arr_min[0], arr_min[1], 0, 0, 0, 0);
-                    var iMax = new Date(arr_max[2], arr_max[0], arr_max[1], 0, 0, 0, 0);
-                    var iDate = new Date(arr_date[2], arr_date[0], arr_date[1], 0, 0, 0, 0);
+                    console.log(arr_min);
+                    console.log(arr_max);
+                    console.log(arr_date);
+
+                    var iMin = new Date(arr_min[0], arr_min[1], arr_min[2]);
+                    var iMax = new Date(arr_max[0], arr_max[1], arr_max[2]);
+                    var iDate = new Date(arr_date[0], arr_date[1], arr_date[2]);
 
                     console.log(iMin);
                     console.log(iMax);
