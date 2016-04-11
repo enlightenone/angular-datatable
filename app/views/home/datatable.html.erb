@@ -37,15 +37,15 @@
 
   <div id="advanced_search_block" class="row">
       <div class="form-group col-sm-2">
-          Minimum Loan Amount: <input class="form-control" id="min-loan-amount" type="text">
+          {{min_loan_term_title}}: <input class="form-control" id="min-loan-term" type="text">
       </div>
       <div class="form-group col-sm-2">
-          Maximum Loan Amount: <input class="form-control" id="max-loan-amount"type="text">
+          {{max_loan_term_title}}: <input class="form-control" id="max-loan-term"type="text">
       </div>
 
       <div class="form-group col-sm-2">
-        <select class="my_selected form-control" ng-model="maxLoanOption" ng-change="MaxLoanChanged()" >
-          <option selected="selected">{{maxLoanTerm}}</option>
+        <select id="loan-amount" class="my_selected form-control"  >
+          <option selected="selected">{{loan_amount_title}}</option>
           <option value="10000">$10,000+</option>
           <option value="20000">$20,000+</option>
           <option value="30000">$30,000+</option>

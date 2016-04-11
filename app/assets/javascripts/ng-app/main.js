@@ -159,42 +159,12 @@ $scope.col_others_info_titles = {
 
 
 // Filteration Block
- $scope.maxRateTerm = "Max Rate";
- $scope.minLoanTerm = "Minimum Loan";
- $scope.maxLoanTerm = "Maximum Loan";
- $scope.pageNumberTerm = "Page Number" ;
- $scope.minLoan = 0 ;
- $scope.maxLoan = 5000000000000000;
- $scope.maxRate = 0 ;
+
+ $scope.min_loan_term_title = "Minimum Loan Term";
+ $scope.max_loan_term_title = "Maximum Loan Term";
+ $scope.loan_amount_title = "Loan Amount"
 
 
-
-   $scope.maxRateChanged = function(){
-    if($scope.maxRateOption == $scope.maxRateTerm ){
-      $scope.maxRate = 0;
-    } else {
-      $scope.maxRate = $scope.maxRateOption ;     
-    }
-
-   }; // End of $scope.maxRateChanged function
-
-$scope.MinLoanChanged =  function(){
-  if(  $scope.minLoanOption == $scope.minLoanTerm ){
-
-    $scope.minLoan = 0 ;
-  }else {
-     $scope.minLoan = $scope.minLoanOption ;
-  }
-}; //End of $scope.MinLoanChanged
-
- $scope.MaxLoanChanged = function(){
-  if(  $scope.maxLoanOption == $scope.maxLoanTerm ){
-
-    $scope.maxLoan = 5000000000000000 ;
-  }else {
-     $scope.maxLoan = $scope.maxLoanOption ;
-  }
- }; // End of  $scope.MaxLoanChanged function
 
 // End of Filteration Block
 
@@ -220,48 +190,3 @@ $scope.MinLoanChanged =  function(){
 
  }]); // End of controller
 
-
-// ********************* Filters Section *****************
-
-app.filter('loanRange', function(){
-  return function (items, min, max) {
-    var filtered = [];
-    min = parseInt(min);
-    max = parseInt(max);
-
-    for(var i = 0 ; i < items.length ; i++ ){
-          itemLoan = items[i].loan_amount;
-        if(itemLoan >= min && itemLoan <= max ) {
-          filtered.push(items[i]);
-        }
-    } // end of for loop
-    return filtered ;
-  };// end of first return function
-});// end of priceRange custom filter 
-
-
-app.filter('maxRateFilter', function(){
-  return function (items, num) {
-    var filtered = [];
-    num = parseFloat(num);
-    for(var i = 0 ; i < items.length ; i++ ){
-        if(items[i].max_rate >= num ) {
-          filtered.push(items[i]);
-        }
-    } // end of for loop
-    return filtered ;
-
-  };// end of first return function
-
-});// end of NumBeds custom filter 
-
-// Pagination offset filter to slice array to be display
-
-app.filter('offset', function () {
-  return function(input, start){
-    start = parseInt(start, 10);
-    return input.slice(start);
-  };// end of return function
-}); // end of offset filter
-
-// ********************* End Filters Section *****************
