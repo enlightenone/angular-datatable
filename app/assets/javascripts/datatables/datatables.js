@@ -7,17 +7,20 @@ $(document).ready(function() {
 
 
     $('#min-loan-term, #max-loan-term, #min-date, #max-date').keyup( function() {
-        table.draw();
+        console.log(table.state.save());
+        table.draw();       
     } );
 
 
       $('#min-date, #max-date').change( function() {
         table.draw();
+        table.state.save();
     } );
 
 
     $('#loan-amount').change( function() {
         table.draw();
+        table.state.save();
     } );
     //Resetting function
 
@@ -67,9 +70,9 @@ $(document).ready(function() {
 
 
 // Custom filtration function Plug In
-$.fn.dataTable.ext.search.push(    
+var api = $.fn.dataTable.ext.search.push(    
     function( settings, data, dataIndex ) {
-        
+       
         var min = parseInt( $('#min-loan-term').val(), 10 );
         var max = parseInt( $('#max-loan-term').val(), 10 );
         var loan = parseFloat(data[8]) || 0;
