@@ -50,7 +50,7 @@ $(document).ready(function() {
         table.search( "" );
         table.column( '0:visible' ).order( 'asc' );
         table.page.len( 10 );
-        table.columns.adjust().draw();
+    
         $("#min-loan-term").val("");
         $("#max-loan-term").val("");
         $("#min-date").val("");
@@ -64,6 +64,11 @@ $(document).ready(function() {
             table.column(col_number).visible(true);
             $input.prop("checked", true);
         });
+
+        $('#container').css( 'display', 'block' );
+      var test = table.columns.adjust().draw();
+
+        console.log(test);
         table.draw();
     }); // End of default resetting function
 
