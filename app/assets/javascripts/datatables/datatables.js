@@ -2,11 +2,14 @@ $(document).ready(function() {
     var table = $('#example').DataTable({
         colReorder: true,
         stateSave: true,
-        "scrollX": true,
+        "autoWidth": true,
+        "sScrollX": "100%",
+        "sScrollXInner": "200%",
         "dom": 'Zlfrtip',
-        // initComplete: function(settings) { 
-        //     $('#example').colResizable({liveDrag:true});
-        // },
+                "colResize": {
+                 "fixedLayout": true,
+            "tableWidthFixed": false
+        },
         "stateSaveParams": function(settings,data){
             var loan_amount = $("#loan-amount").val();
               data["min-loan-term"] = $("#min-loan-term").val();
@@ -92,6 +95,15 @@ $(document).ready(function() {
        var column = table.column(column_number);
         column.visible(!column.visible());
     });
+
+
+    // Search Box Block
+    $('.dataTables_filter').hide();
+    $("#search-box").keyup(function(){
+      table.search(this.value).draw();
+    });
+    // End of Search Box Block''
+
 
 }); // End of $(document).ready(function() function
 

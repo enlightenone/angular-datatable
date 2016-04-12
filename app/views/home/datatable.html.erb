@@ -15,7 +15,7 @@
       <div class="form-group">
         <label for="search" class="col-sm-1 col-sm-offset-2"><span style="font-size: 24px;">Search</span></label>
         <div class="col-sm-5">
-          <input id="search" class="form-control" ng-model="query">
+          <input id="search-box" class="form-control">
         </div> 
         <div class="col-sm-4" style="text-align: right">
          <span id="reset_default_term">
@@ -143,9 +143,10 @@
 <!-- Main Table Block -->
 
 
-<table id="example" class="display" cellspacing="0" width="100%">
+<table id="example" class="display" cellspacing="0" width="100%" style="width:100%">
         <thead>
           <tr>
+              <th ng-repeat="title in table_titles">{{title}}</th>
               <th ng-repeat="title in table_titles">{{title}}</th>
           </tr>
         </thead>
@@ -161,6 +162,18 @@
             <td>{{data.loan_amount}}</td>
             <td>{{data.loan_term}}</td>
             <td>{{data.appraisal_value}}</td>  
+            <td>{{data.id}}</td>
+            <td>{{data.date}}</td>
+            <td>{{data.apn}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.city}}</td>
+            <td>{{data.max_rate}}</td>
+            <td>{{data.interest_rate}}</td>
+            <td>{{data.loan_amount}}</td>
+            <td>{{data.loan_term}}</td>
+            <td>{{data.appraisal_value}}</td>  
+
+
          </tr>
         </tbody>
     </table>
