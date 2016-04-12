@@ -1,17 +1,4 @@
-<script>
-$(document).ready(function(){
-    $("#advanced_search_block").hide();
-    $("#column_filter_block").hide();
 
-    $("#advanced_search_buttom").click(function(){
-        $("#advanced_search_block").slideToggle( "slow" );
-    });
-
-    $("#column_filter_buttom").click(function(){
-        $("#column_filter_block").slideToggle( "slow" );
-    });
-});
-</script>
 
 <div style="width: 100%; height: 60px; background: #DCE4EA; padding: 10px">
   <div class="container">
@@ -28,11 +15,11 @@ $(document).ready(function(){
       <div class="form-group">
         <label for="search" class="col-sm-1 col-sm-offset-2"><span style="font-size: 24px;">Search</span></label>
         <div class="col-sm-5">
-          <input id="search" class="form-control" ng-model="query">
+          <input id="search-box" class="form-control">
         </div> 
         <div class="col-sm-4" style="text-align: right">
-         <span ng-click="reset()">
-            <span id="reset_default_term">Reset To Default</span> <span id="reset_default">X</span>
+         <span id="reset_default_term">
+            <span >Reset To Default</span> <span id="reset_default">X</span>
          </span>
       </div> 
       </div>
@@ -50,18 +37,15 @@ $(document).ready(function(){
 
   <div id="advanced_search_block" class="row">
       <div class="form-group col-sm-2">
-        <select class="my_selected form-control" ng-model="maxRateOption" ng-change="maxRateChanged()">
-          <option selected="selected">{{maxRateTerm}}</option>
-          <option value="1">1+</option>
-          <option value="2">2+</option>
-          <option value="3">3+</option>
-          <option value="4">4+</option>
-          <option value="5">5+</option>
-        </select>
+        <input name="min-loan-term" class="form-control" id="min-loan-term" type="text" placeholder="{{min_loan_term_title}}">
       </div>
       <div class="form-group col-sm-2">
-        <select class="my_selected form-control" ng-model="minLoanOption" ng-change="MinLoanChanged()">
-          <option selected="selected">{{minLoanTerm}}</option>
+        <input name="max-loan-term" class="form-control" id="max-loan-term" type="text" placeholder="{{max_loan_term_title}}">
+      </div>
+
+      <div class="form-group col-sm-2">
+        <select name="loan-amount" id="loan-amount" class="my_selected form-control"  >
+          <option selected="selected">{{loan_amount_title}}</option>
           <option value="10000">$10,000+</option>
           <option value="20000">$20,000+</option>
           <option value="30000">$30,000+</option>
@@ -93,41 +77,11 @@ $(document).ready(function(){
       </div>
 
       <div class="form-group col-sm-2">
-        <select class="my_selected form-control" ng-model="maxLoanOption" ng-change="MaxLoanChanged()" >
-          <option selected="selected">{{maxLoanTerm}}</option>
-          <option value="10000">$10,000+</option>
-          <option value="20000">$20,000+</option>
-          <option value="30000">$30,000+</option>
-          <option value="50000">$50,000+</option>
-          <option value="75000">$75,000+</option>
-          <option value="100000">$100,000+</option>
-          <option value="125000">$125,000+</opton>
-          <option value="150000">$150,000+</opton>
-          <option value="175000">$175,000+</opton>
-          <option value="200000">$200,000+</opton>
-          <option value="225000">$225,000+</opton>
-          <option value="250000">$250,000+</opton>
-          <option value="300000">$300,000+</opton>
-          <option value="350000">$350,000+</option>
-          <option value="400000">$400,000+</option>
-          <option value="450000">$450,000+</option>
-          <option value="500000">$500,000+</option>
-          <option value="600000">$600,000+</option>
-          <option value="700000">$700,000+</option>
-          <option value="800000">$800,000+</option>
-          <option value="1000000">$1M+</option>
-          <option value="1250000">$1.25M+</option>
-          <option value="1500000">$1.5M+</option>
-          <option value="1750000">$1.75M+</option>
-          <option value="2000000">$2M+</option>
-          <option value="2500000">$2.5M+</option>
-          <option value="3000000">$3M+</option>
-        </select>
-      </div>
-
-      <div class="form-group col-sm-2">
-        Date: 
-      </div>
+        <input name="min-date" class="form-control" id="min-date" type="text" placeholder="Beginning Date" >
+     </div>
+     <div class="form-group col-sm-2">
+      <input name="max-date" class="form-control" id="max-date" type="text" placeholder="End Date">
+     </div>
   </div> <!-- End of Row Div -->
 </div> <!-- End of Container Div  -->
 <!--  End of Advanced Search Field Block -->
@@ -146,28 +100,28 @@ $(document).ready(function(){
         <div class="filter_cat_title"> General Info</div>
         <hr>
         <ul>
-          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in ids_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
+          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="option in col_general_info_titles.options" ><input class="toggle-visit" type="checkbox" checked data-column-num="{{$index + col_general_info_titles.start }}"> {{option}} </li>
         </ul>
      </div>
      <div class="col-sm-3">
         <div class="filter_cat_title">Address</div>
         <hr>
         <ul>
-          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in address_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
+          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="option in col_address_titles.options" ><input class="toggle-visit"  type="checkbox" checked data-column-num="{{$index + col_address_titles.start }}"> {{option}} </li>
         </ul>
      </div>
       <div class="col-sm-3">
         <div class="filter_cat_title">Loan Info</div>
         <hr>
         <ul>
-          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in loan_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
+          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="option in col_loan_info_titles.options" ><input class="toggle-visit"  type="checkbox" checked data-column-num="{{$index + col_loan_info_titles.start }}"> {{option}} </li>
         </ul>
      </div>
      <div class="col-sm-3">
         <div class="filter_cat_title">Others Info</div>
         <hr>
         <ul>
-          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in other_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
+          <li style="list-style-type: none;margin:15px 5px;" ng-repeat="option in col_others_info_titles.options" ><input class="toggle-visit"  type="checkbox" checked data-column-num="{{$index + col_others_info_titles.start }}"> {{option}} </li>
         </ul>
      </div>
   </div> <!-- End of row div -->
@@ -177,8 +131,8 @@ $(document).ready(function(){
 <!--  End of  Table Column Filteration Block -->
 
 
+
 <div >
->>>>>>> faker-gem
   <ul>
     <li style="list-style-type: none;margin:15px 5px;" ng-repeat="flag in display_flags" ><input type="checkbox" ng-model="flag.flag"> {{flag.term}} </li>
   </ul>
@@ -186,27 +140,42 @@ $(document).ready(function(){
 
 <hr>
 
-<!--    Main Table -->
-  <table datatable="ng" dt-options="dtOptions" class="row-border hover">
-    <thead>
-        <tr >
-            <th ng-repeat="title in table_titles">{{title}}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="data in table_data">
-          <td>{{data.id}}</td>
-          <td>{{data.date}}</td>
-          <td>{{data.apn}}</td>
-          <td>{{data.address}}</td>
-          <td>{{data.city}}</td>
-          <td>{{data.max_rate}}</td>
-          <td>{{data.interest_rate}}</td>
-          <td>{{data.loan_amount}}</td>
-          <td>{{data.loan_term}}</td>
-          <td>{{data.appraisal_value}}</td>  
-       </tr>
-    </tbody>
-</table>
+<!-- Main Table Block -->
 
-<!--  End of Main Table -->
+
+<table id="example" class="display" cellspacing="0" width="100%" style="width:100%">
+        <thead>
+          <tr>
+              <th ng-repeat="title in table_titles">{{title}}</th>
+              <th ng-repeat="title in table_titles">{{title}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="data in table_data">
+            <td>{{data.id}}</td>
+            <td>{{data.date}}</td>
+            <td>{{data.apn}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.city}}</td>
+            <td>{{data.max_rate}}</td>
+            <td>{{data.interest_rate}}</td>
+            <td>{{data.loan_amount}}</td>
+            <td>{{data.loan_term}}</td>
+            <td>{{data.appraisal_value}}</td>  
+            <td>{{data.id}}</td>
+            <td>{{data.date}}</td>
+            <td>{{data.apn}}</td>
+            <td>{{data.address}}</td>
+            <td>{{data.city}}</td>
+            <td>{{data.max_rate}}</td>
+            <td>{{data.interest_rate}}</td>
+            <td>{{data.loan_amount}}</td>
+            <td>{{data.loan_term}}</td>
+            <td>{{data.appraisal_value}}</td>  
+
+
+         </tr>
+        </tbody>
+    </table>
+
+<!--  End of Main Table Block -->
